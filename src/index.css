@@ -1,0 +1,282 @@
+.display-none {
+    display: none !important;
+}
+
+.display-block {
+    display: block !important;
+}
+
+/* Loader */
+
+.circle-1 {
+    border: 4px solid;
+    border-right: 4px solid #2E37A4;
+    border-left: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-bottom: 4px transparent;
+    animation: animate_1 .85s linear infinite;
+    transform: translate(-50%, -50%);
+    display: inline;
+}
+
+.circle-2 {
+    border-right: 4px solid white;
+    border-left: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-bottom: 4px transparent;
+    animation: animate_2 .85s linear infinite;
+}
+
+@keyframes animate_1 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}
+
+@keyframes animate_2 {
+    0% {
+        transform: rotate(-360deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+button {
+    cursor: pointer;
+    outline: none;
+}
+
+.box-shadow {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.box-shadow-full {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 22px 0px;
+}
+
+.box-shadow-right-full {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 22px 0px;
+}
+
+.transform-translate {
+    transform: translate(-50%, -50%) !important;
+}
+
+/* .text-grey{
+    color: #bf6161 !important;
+  } */
+/* Toast */
+
+.text-list {
+    transition: .3s all;
+    color: #6D6D6D
+}
+
+.navbar .text-list:hover {
+    color: #FF0000;
+}
+
+.bg-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.back-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+input {
+    outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
+}
+
+.slide-in {
+    visibility: visible !important;
+    opacity: 1 !important;
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.slide-out {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    animation: slideOut 0.5s ease-in forwards;
+}
+
+.bg-circle {
+    background-color: rgba(46, 55, 164, .2);
+}
+
+.text-web-primary {
+    color: #C30000;
+}
+
+.bg-web-primary {
+    background-color: #C30000;
+}
+
+.swiper-slid {
+    padding: 0 25px !important;
+}
+
+.swiper-button-next {
+    position: absolute !important;
+    right: 0px !important;
+}
+
+.swiper-button-prev {
+    position: absolute !important;
+    left: 0px !important;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+    font-family: swiper-icons;
+    font-size: 20px !important;
+    text-transform: none !important;
+    letter-spacing: 0;
+    font-variant: initial;
+    line-height: 1;
+    font: 900 !important;
+    color: #FF0000;
+}
+
+/* model css */
+
+/* CSS Modal Animations */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes modalFadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes modalScaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes modalScaleOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+}
+
+.modal-overlay {
+    animation: modalFadeIn 0.3s forwards;
+}
+
+.modal-overlay.hide {
+    animation: modalFadeOut 0.3s forwards;
+}
+
+.modal-content {
+    animation: modalScaleIn 0.3s forwards;
+}
+
+.modal-content.hide {
+    animation: modalScaleOut 0.3s forwards;
+}
+
+/* 
+.form-control:disabled{
+    background-color: transparent !important;
+} */
+
+.btn-hover {
+    outline: none;
+    border: none !important;
+}
+
+.btn-hover:hover {
+    color: #fff !important;
+}
+
+.datepickers .react-datepicker {
+    position: absolute !important;
+    z-index: 9999999;
+}
+
+.datepickersTime .p-4 {
+    padding: 0 !important;
+}
+/* 
+.active {
+    color: #2E37A4 !important;
+    font-weight: 500 !important;
+} */

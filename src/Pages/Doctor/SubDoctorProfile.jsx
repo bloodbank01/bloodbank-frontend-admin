@@ -50,7 +50,7 @@ const SubDoctorProfile = () => {
                             <div className="col-sm-12">
                                 <ul className="breadcrumb">
                                     <li className="breadcrumb-item">
-                                        <a href="doctors.html">Doctors </a>
+                                        <Link to={`${getRoute('login') == 'doctor' ? '' : '/admin'}/doctor/list`}>Doctors </Link>
                                     </li>
                                     <li className="breadcrumb-item">
                                         <i className="feather-chevron-right" />

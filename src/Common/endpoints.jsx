@@ -1,8 +1,8 @@
 
 const URL = {
     // API 
-    baseUrl: 'http://localhost:4062/admin/'
-    // baseUrl : 'https://bloodbank-backend-e8cg.onrender.com/admin'
+    // baseUrl: 'http://localhost:4062/admin/'
+    baseUrl : 'https://bloodbank-backend-admin.onrender.com/admin'
     // baseUrl : import.meta.env.VITE_BASE_URL
 }
 const ENDPOINTS = {

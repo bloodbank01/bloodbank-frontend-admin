@@ -21,7 +21,7 @@ const DoctorDashboard = () => {
   const handleGetAppointmentData = async () => {
     try {
       startLoading()
-      const response = await getAppointment('admin')
+      const response = await getAppointment('doctor')
       stopLoading()
 
       if (response.status) {

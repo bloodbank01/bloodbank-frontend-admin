@@ -161,7 +161,7 @@ const AppointmentList = () => {
                         <img
                             width={28}
                             height={28}
-                            src={getImage(row?.profile?.profile_pic)}
+                            src={getImage(row?.profile?.profile_pic)?.replace("admin", "web")}
                             className="rounded-circle m-r-5"
                             alt="img"
                             style={{objectFit : 'cover'}}

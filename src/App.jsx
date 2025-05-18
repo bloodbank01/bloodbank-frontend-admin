@@ -46,55 +46,57 @@ function App() {
 
   if (localStorage.getItem('token')) {
     useEffect(() => {
-      (async () => {
-        try {
-          startLoading()
-          const response = await getHospital()
-          stopLoading()
+      // setTimeout(() => {
+        (async () => {
+          try {
+            startLoading()
+            const response = await getHospital()
+            stopLoading()
 
-          if (response.status) {
-            dispatch(hospitalList(response.data))
-          } else {
-            alert(response.message)
+            if (response.status) {
+              dispatch(hospitalList(response.data))
+            } else {
+              alert(response.message)
+            }
+
+            startLoading()
+            const response_doctor = await getDoctor()
+            stopLoading()
+
+            if (response_doctor.status) {
+              dispatch(doctorList(response_doctor.data))
+            } else {
+              alert(response_doctor.message)
+            }
+
+            startLoading()
+            const blood_group_list = await getBloodGroup()
+            stopLoading()
+
+            if (blood_group_list.status) {
+              dispatch(bloodGroupList(blood_group_list.data))
+            } else {
+              alert(blood_group_list.message)
+            }
+
+            startLoading()
+            const response_profile = await getProfile()
+            stopLoading()
+
+            if (response_profile.status) {
+              dispatch(userProfile(response_profile.data))
+            } else {
+              alert(response_profile.message)
+            }
+
+          } catch (error) {
+            console.log(error)
+            stopLoading()
+            alert("Please Try Again!")
           }
 
-          startLoading()
-          const response_doctor = await getDoctor()
-          stopLoading()
-
-          if (response_doctor.status) {
-            dispatch(doctorList(response_doctor.data))
-          } else {
-            alert(response_doctor.message)
-          }
-
-          startLoading()
-          const blood_group_list = await getBloodGroup()
-          stopLoading()
-
-          if (blood_group_list.status) {
-            dispatch(bloodGroupList(blood_group_list.data))
-          } else {
-            alert(blood_group_list.message)
-          }
-
-          startLoading()
-          const response_profile = await getProfile()
-          stopLoading()
-
-          if (response_profile.status) {
-            dispatch(userProfile(response_profile.data))
-          } else {
-            alert(response_profile.message)
-          }
-
-        } catch (error) {
-          console.log(error)
-          stopLoading()
-          alert("Please Try Again!")
-        }
-
-      })()
+        })()
+      // }, 2000);
 
     }, [])
   }

@@ -8,11 +8,12 @@ const tokens = async () => {
 }
 
 const errorResponse = (error) => {
-    if (error.status == 401) {
-        localStorage.removeItem('token')
+    if (error.response && error.response.status === 401) {
+        localStorage.clear();
+        setTimeout(() => window.location.href = '/sign-in', 2000);
     }
 
-    return { status: false, message: error.response.data.error.message }
+    return { status: false, message: error.response ? error.response.data.error.message : 'An error occurred.' };
 }
 
 const validRespones = async (res) => {
@@ -586,6 +587,23 @@ export const deleteAppointment = async (id) => {
     try {
 
         const response = await apiClient.delete(`${ENDPOINTS.deleteAppointment}/${id}`);
+        let res = await validRespones(response)
+
+        if (!res.status) {
+            return { status: false, message: res.message }
+        }
+
+        return { status: true, message: res.message, data: res.data }
+
+    } catch (error) {
+        return errorResponse(error)
+    }
+};
+
+export const getFilterAppointment = async (payload) => {
+    try {
+
+        const response = await apiClient.post(ENDPOINTS.getFilterAppointment, payload);
         let res = await validRespones(response)
 
         if (!res.status) {

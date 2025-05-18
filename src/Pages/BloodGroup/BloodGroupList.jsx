@@ -47,9 +47,9 @@ const BloodGroupList = () => {
             width : '200px',
             cell: row => (
                 <div className="profile-image">
-                    <Link style={{ fontSize: '14px', color: '#333448', fontWeight: '500' }} to={`${getRoute()}/blood-group/view`}>
+                    <div style={{ fontSize: '14px', color: '#333448', fontWeight: '500' }} to={`${getRoute()}/blood-group/view`}>
                         {row.name}
-                    </Link>
+                    </div>
                 </div>
             )
         },

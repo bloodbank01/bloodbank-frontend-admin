@@ -41,6 +41,8 @@ const ENDPOINTS = {
     getHospitalAppointment: URL.baseUrl + 'api/appointment/hospital',
     updateAppointment: URL.baseUrl + 'api/appointment',
     getHospitalDoctors: URL.baseUrl + 'api/appointment/hospital/doctor',
+    getFilterAppointment: URL.baseUrl + 'api/appointment/filter',
+
 }
 
 export default ENDPOINTS

@@ -12,6 +12,7 @@ const apiClient = axios.create({
 // Interceptor to dynamically get token and set headers
 apiClient.interceptors.request.use(
   (config) => {
+    console.log("🚀 ~ config:", config)
     const token = localStorage.getItem('token');
     const vr = localStorage.getItem('vr');
 

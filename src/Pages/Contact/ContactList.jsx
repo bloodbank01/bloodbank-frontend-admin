@@ -49,9 +49,8 @@ const ContactList = () => {
 
                     if (response.status) {
                         setSearch("")
-                        let data = await response.data.filter((el) => el.createdAt = moment(el.createdAt).format('DD.MM.YYYY'))
                         stopLoading()
-                        dispatch(contactList(data))
+                        dispatch(contactList(response.data))
                         // setData(data)
                         // setFilteredData(data)
 
@@ -140,7 +139,7 @@ const ContactList = () => {
         },
         {
             name: <span style={{ fontWeight: '600', fontSize: '14px', color: '#333448' }}>Query Date</span>,
-            selector: row => <span style={{ fontSize: '14px', color: '#333448', fontWeight: '500' }}>{row.createdAt}</span>
+            selector: row => <span style={{ fontSize: '14px', color: '#333448', fontWeight: '500' }}>{moment(row.createdAt).format('DD.MM.YYYY')}</span>
         },
         {
             name: "",
@@ -175,9 +174,8 @@ const ContactList = () => {
 
     useEffect(() => {
         setSearch("")
-        let data = contactData && contactData.filter((el) => el.createdAt = moment(el.createdAt).format('DD.MM.YYYY'))
-        setData(data)
-        setFilteredData(data)
+        setData(contactData)
+        setFilteredData(contactData)
     }, [contactData])
 
 
@@ -190,9 +188,8 @@ const ContactList = () => {
 
             if (response.status) {
                 setSearch("")
-                let data = await response.data.filter((el) => el.createdAt = moment(el.createdAt).format('DD.MM.YYYY'))
-                console.log("🚀 ~ handleGetData ~ data: neww-------", data)
-                dispatch(contactList(data))
+                console.log("🚀 ~ handleGetData ~ data: neww-------", response.data)
+                dispatch(contactList(response.data))
                 // setData(data)
                 // setFilteredData(data)
 

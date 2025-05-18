@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { useAlert } from '../../Common/Toasts/AlertProvider';
 import { useSuccess } from '../../Common/Toasts/SuccessProvider';
 import { useLoader } from '../../Common/Loader/useLoader';
-import { deleteAppointment, getAppointment, getHospitalDoctors, updateAppointment, updateHospital } from '../../Common/Apis/ApiService';
+import { deleteAppointment, getAppointment, getFilterAppointment, getFilterContact, getHospitalDoctors, updateAppointment, updateHospital } from '../../Common/Apis/ApiService';
 import moment from 'moment'
 import { getImage, getRoute } from '../../Common/Handler'
 import DataTable from 'react-data-table-component';
@@ -93,13 +93,10 @@ const AppointmentList = () => {
 
     const handleChange = async (date, id) => {
         // const formattedDate = moment(date).format('DD-MM-YYYY');
-        console.log("🚀 ~ handleChange ~ date:", date, id)
         if (date) {
             setSelectedDate(date);
             setVisibleRowId(null);
-            console.log("🚀 ~ handleChange ~ date:", date)
             const formattedDate = moment(date).format('DD-MM-YYYY');
-            console.log("🚀 ~ handleChange ~ formattedDate:", formattedDate)
             try {
                 startLoading()
                 const response = await updateAppointment({ appointment_date: formattedDate, id: id })
@@ -130,18 +127,46 @@ const AppointmentList = () => {
             setSelectedStatuses((prev) => prev.filter((status) => status !== value));
         }
 
+        console.log(selectedStatuses)
+
     };
+
+    useEffect(() => {
+        if (selectedStatuses?.length != 0) {
+            (async () => {
+                try {
+                    startLoading()
+                    const response = await getFilterAppointment({ status: selectedStatuses })
+                    stopLoading()
+
+                    if (response.status) {
+                        setSearch("")
+                        stopLoading()
+                        setData(data)
+                        setFilteredData(response.data)
+                        // setFilteredData(data)
+
+                    } else {
+                        alert(response.message)
+                    }
+
+                } catch (error) {
+                    console.log(error)
+                    stopLoading()
+                    alert("Please Try Again!")
+                }
+            })()
+        }
+        console.log(selectedStatuses, 'selectedStatuses')
+    }, [selectedStatuses])
 
     const handleSearch = (e) => {
         const value = e.target.value.toLowerCase()
-        console.log("🚀 ~ handleSearch ~ value:", value)
         setSearch(value)
         const result = data.filter(row => {
             let name = `${row.first_name}${row.last_name}`
-            console.log("🚀 ~ handleSearch ~ name:", name)
             return name.toLowerCase().includes(value)
         })
-        console.log("🚀 ~ handleSearch ~ result:", result)
         setFilteredData(result)
     }
 
@@ -164,7 +189,7 @@ const AppointmentList = () => {
                             src={getImage(row?.profile?.profile_pic)?.replace("admin", "web")}
                             className="rounded-circle m-r-5"
                             alt="img"
-                            style={{objectFit : 'cover'}}
+                            style={{ objectFit: 'cover' }}
                         />{" "}
                         {`${row.first_name} ${row.last_name}`}
                     </Link>
@@ -513,7 +538,7 @@ const AppointmentList = () => {
                                                                     Filter
                                                                 </button>
                                                                 <div className="dropdown-menu dropdown-menu-start">
-                                                                    {['all', 'pending', 'resolved', 'review', 'team-appointment',].map((status) => (
+                                                                    {['all', 'completed', 'approved', 'cancelled', 'reject', 'pending'].map((status) => (
                                                                         <label
                                                                             key={status}
                                                                             className="w-100 border-0 bg-transparent outline-0 d-flex gap-2 align-items-center p-2 py-1"

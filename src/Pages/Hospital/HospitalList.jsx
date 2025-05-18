@@ -47,9 +47,9 @@ const HospitalList = () => {
             selector: row => row.name,
             cell: row => (
                 <div className="profile-image">
-                    <Link style={{ fontSize: '14px', color: '#333448', fontWeight: '500' }} to={`${getRoute()}/hospital/view`}>
+                    <div style={{ fontSize: '14px', color: '#333448', fontWeight: '500' }} to={`${getRoute()}/hospital/view`}>
                         {row.name}
-                    </Link>
+                    </div>
                 </div>
             )
         },

@@ -25,9 +25,9 @@ const Header = () => {
       stopLoading()
 
       if (response.status) {
-        window.localStorage.clear();
-        navigate('/sign-in')
+        localStorage.clear();
         success(response.message)
+        navigate('/sign-in')
       } else {
         alert(response.message)
       }
@@ -77,7 +77,7 @@ const Header = () => {
             >
               <div className="user-names">
                 <h5>{`${profile?.first_name} ${profile?.last_name}`}</h5>
-                <span>Admin</span>
+                <span>{getRoute('login') == 'doctor' ? 'Doctor' : 'Admin'}</span>
               </div>
               <span className="user-img">
                 <img style={{ width: '40px', height: '40px', borderRadius: '50%', objectFit: 'cover', overflow: 'hidden' }} src={getImage(profile?.profile_pic)} alt="Admin" />
